@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESAFIO DASA - TAHILA ANDRIGHETTI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            font-weight: bold;
+        }
+        h2, h3, h4 {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input[type="text"] {
+            margin-bottom: 10px;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .checkbox-group label {
+            width: 200px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function toggleSelectAll(source) {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = source.checked;
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <h1>DESAFIO DASA - TAHILA ANDRIGHETTI</h1>
+
+    <h2>Selecionar anotação de variante específica</h2>
+    <form action="/submit_variant" method="POST">
+        <label for="variant_id">
+            Entre com o ID do variante ou variantes separados por vírgula:<br>  
+            Ex.: rs8997,rs1059831,rs947345
+        </label>
+        <br>
+        <input type="text" id="variant_id" name="variant_id"><br>       
+        <button type="submit">Submeter</button>
+    </form>
+
+    <h2>Filtrar variantes</h2>
+    <form action="/filter_variants" method="POST">
+        <p>Entre com os valores de frequência e profundidade mínima e máxima para obter uma tabela contendo os variantes de acordo com esse intervalo.</p>
+        <p>Também selecione as populações/databases das quais você gostaria de obter informações.</p>
+        <p>Observações:<br>
+            - Entre com valores de 0 a 1 para as Frequências, e de 0 a 100 para a Profundidade; <br>
+            - Deixe os campos de "Frequência" ou "Profundidade" em branco caso não queira filtrar por algum deles;<br>
+            - Se mais de uma opção de População/Banco de Dados for selecionada, o valor considerado para a filtragem será a média entre suas frequências;<br>
+            - Ainda assim, a tabela retornada conterá os valores para todas as populações selecionadas;<br>
+            - Nem todos os variantes possuem informações para todas as populações.</p>
+
+        <div class="form-row">
+            <div>
+                <h3>Valores de Frequência</h3>
+                <label for="min_freq">Mínimo:</label>
+                <input type="text" id="min_freq" name="min_freq">
+                <label for="max_freq">Máximo:</label>
+                <input type="text" id="max_freq" name="max_freq">
+            </div>
+            <div>
+                <h3>Valores de Profundidade</h3>
+                <label for="min_dp">Mínimo:</label>
+                <input type="text" id="min_dp" name="min_dp">
+                <label for="max_dp">Máximo:</label>
+                <input type="text" id="max_dp" name="max_dp">
+            </div>
+        </div>
+
+        <h3>Selecionar Banco de Dados e População</h3>
+
+        <label><input type="checkbox" onclick="toggleSelectAll(this)"> Selecionar Todos</label>
+
+        <div class="checkbox-group">
+            <div>
+                <h4>1000 GENOMES</h4>
+                <label><input type="checkbox" name="populations" value="AFR"> Africana</label>
+                <label><input type="checkbox" name="populations" value="AMR"> Americana</label>
+                <label><input type="checkbox" name="populations" value="EUR"> Europeia</label>
+                <label><input type="checkbox" name="populations" value="EAS"> Leste Asiática</label>
+                <label><input type="checkbox" name="populations" value="SAS"> Sul Asiática</label>
+                <label><input type="checkbox" name="populations" value="AF"> Todas populações combinadas</label>
+            </div>
+            <div>
+                <h4>gnomAD Exomes</h4>
+                <label><input type="checkbox" name="populations" value="gnomADe_AFR"> Africana/Americana</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_AMR"> Americana</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_ASJ"> Judeu-Ashkenazi</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_EAS"> Leste Asiática</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_FIN"> Finlandesa</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_NFE"> Europeus não finlandeses</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_OTH"> Outras populações combinadas</label>
+                <label><input type="checkbox" name="populations" value="gnomADe_SAS"> Sul Asiática</label>
+                <label><input type="checkbox" name="populations" value="gnomADe"> Todas populações combinadas</label>
+            </div>
+            <div>
+                <h4>gnomAD Genomes</h4>
+                <label><input type="checkbox" name="populations" value="gnomADg_AFR"> Africana/Americana</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_AMI"> Amish</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_AMR"> Americana</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_ASJ"> Judeu-Ashkenazi</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_EAS"> Leste Asiática</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_FIN"> Finlandesa</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_MID"> Oriente Médio</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_NFE"> Europeus não finlandeses</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_OTH"> Outras Populações combinadas</label>
+                <label><input type="checkbox" name="populations" value="gnomADg_SAS"> Sul Asiática</label>
+                <label><input type="checkbox" name="populations" value="gnomADg"> Todas populações combinadas</label>
+                        
+            </div>
+        </div>        
+
+        <button type="submit">Submeter</button>
+    </form>
+</body>
+</html>
