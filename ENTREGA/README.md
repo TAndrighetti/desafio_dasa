@@ -159,10 +159,10 @@ utilizando as seguintes opções:
 O API será disponibilizado na URL http://127.0.0.1:5000/ . Mais informações estão contidas na própria interface.
 
 ## Considerações finais
-Infelizmente não foi possível incluir o Snakemake por questão de tempo. 
-Agradeço pela oportunidade e espero que com o workflow que construí seja possível obter as informações necessárias para o processo seletivo.
-Fico à disposição para conversar melhor sobre o projeto e minhas experiências, assim como ouvir mais sobre a vaga e a empresa de vocês.
-No aguardo de um retorno.
-Att,
+Infelizmente não foi possível incluir o Snakemake por questão de tempo.  
+Agradeço pela oportunidade e espero que com o workflow que construí seja possível obter as informações necessárias para o processo seletivo.  
+Fico à disposição para conversar melhor sobre o projeto e minhas experiências, assim como ouvir mais sobre a vaga e a empresa de vocês.  
+No aguardo de um retorno.  
+Att,  
 Tahila Andrighetti
 
