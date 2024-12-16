@@ -1,14 +1,5 @@
 # DESAFIO DASA: API PARA FILTRAGEM DE VARIANTES
 
-Olá, equipe Dasa!
-
-Agradeço pela oportunidade de estar participando deste processo seletivo.
-
-Espero que os resultados que trago cumpram suas expectativas.
- 
-Por favor, leiam este README para explicações e instruções.
- 
-
 ## Overview do Workflow
 
 De acordo com a descrição do teste, foi solicitada a construção de uma "API e uma interface interativa web (flask) que interaja com a API para filtrar variantes por frequência e profundidade (DP)" a partir do arquivo .vcf enviado.
